@@ -21,21 +21,8 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Gerando Dockerrun.aws.json para o Elastic Beanstalk...
-      - |
-        cat > Dockerrun.aws.json << EOF
-        {
-          "AWSEBDockerrunVersion": 1,
-          "Image": {
-            "Name": "$REPOSITORY_URI:$IMAGE_TAG",
-            "Update": "true"
-          },
-          "Ports": [
-            {
-              "ContainerPort": 8080
-            }
-          ]
-        }
-        EOF
+      - printf '{"AWSEBDockerrunVersion":"1","Image":{"Name":"%s","Update":"true"},"Ports":[{"ContainerPort":8080}]}' "$REPOSITORY_URI:$IMAGE_TAG" > Dockerrun.aws.json
+      - cat Dockerrun.aws.json
 
 artifacts:
   files:
