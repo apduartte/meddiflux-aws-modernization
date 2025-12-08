@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-content">
         <p>Formação AWS 2025</p>
         <Link to="/about" className="footer-link">
-          Sobre a BIA 
+          Sobre a BIA 2
         </Link>
       </div>
     </footer>
