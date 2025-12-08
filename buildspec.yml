@@ -12,7 +12,17 @@ phases:
     commands:
       - echo Build iniciado em `date`
       - echo Gerando imagem da MEDDIFLUX...
-      - docker build -t $REPOSITORY_URI:latest .
+      - |
+        if [ "$ENVIRONMENT" = "dev" ]; then
+          echo "Usando Dockerfile.dev para ambiente de desenvolvimento"
+          docker build -f Dockerfile.dev -t $REPOSITORY_URI:latest .
+        elif [ "$ENVIRONMENT" = "homol" ]; then
+          echo "Usando Dockerfile.homol para ambiente de homologação"
+          docker build -f Dockerfile.homol -t $REPOSITORY_URI:latest .
+        else
+          echo "Usando Dockerfile padrão"
+          docker build -t $REPOSITORY_URI:latest .
+        fi
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
      commands:
