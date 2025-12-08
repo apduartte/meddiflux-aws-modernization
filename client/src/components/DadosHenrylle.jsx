@@ -12,7 +12,7 @@ const DadosHenrylle = () => {
           className="link-card"
         >
           <h4>💬 Suporte em AWS</h4>
-          <p>Formação</p>
+          <p>Formação em AWS</p>
         </a>
         
         <a
