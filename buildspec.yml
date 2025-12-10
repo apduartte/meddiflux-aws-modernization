@@ -19,6 +19,9 @@ phases:
         elif [ "$ENVIRONMENT" = "homol" ]; then
           echo "Usando Dockerfile.homol para ambiente de homologação"
           docker build -f Dockerfile.homol -t $REPOSITORY_URI:latest .
+        elif [ "$ENVIRONMENT" = "prod" ]; then
+          echo "Usando Dockerfile.prod para ambiente de produção"
+          docker build -f Dockerfile.prod -t $REPOSITORY_URI:latest .
         else
           echo "Usando Dockerfile padrão"
           docker build -t $REPOSITORY_URI:latest .
