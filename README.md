@@ -41,30 +41,6 @@ Projeto de **Modernização, Otimização e Segurança** do ambiente AWS da **Me
 
 ---
 
-## 🧭 Arquitetura alvo (visão macro)
-
-```mermaid
-flowchart TB
-  U[Usuários / Navegadores] -->|HTTPS| R53[Route 53]
-  R53 --> CF[CloudFront]
-  CF -->|Estáticos| S3["S3 (Static Content)"]
-  CF -->|Dinâmico| ALB_P["ALB - PROD"]
-
-  subgraph PROD["PROD (VPC isolada)"]
-    ALB_P --> ASG_P["ASG (2-4x t3.medium)"]
-    ASG_P --> APP_P["Aplicação"]
-    APP_P --> RDS_P["RDS (Multi-AZ)"]
-    SM_P["Secrets Manager"] --> APP_P
-    CW_P["CloudWatch"] <--> APP_P
-  end
-
-  subgraph GOV["Governança / Auditoria"]
-    CT["CloudTrail"] --> LOGS["S3 - Logs Centralizados"]
-    IAM["IAM Least Privilege"] --> APP_P
-  end
-
-  ADM["Admin/DevOps"] --> SSM["SSM Session Manager"] --> ASG_P
-  
 ## Diagramas (Arquitetura e CI/CD)
 Veja em: [docs/architecture.md](docs/architecture.md)
   
