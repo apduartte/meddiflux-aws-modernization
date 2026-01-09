@@ -43,3 +43,4 @@ Projeto de **Modernização, Otimização e Segurança** do ambiente AWS da **Me
 ## Diagramas (Arquitetura e CI/CD)
 - Arquitetura (visão macro): [docs/diagram-architecture.md](docs/diagram-architecture.md)
 - Fluxo CI/CD: [docs/diagram-cicd.md](docs/diagram-cicd.md)
+
