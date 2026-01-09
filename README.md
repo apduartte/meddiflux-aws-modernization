@@ -64,3 +64,7 @@ flowchart TB
   end
 
   ADM["Admin/DevOps"] --> SSM["SSM Session Manager"] --> ASG_P
+  
+## Diagramas (Arquitetura e CI/CD)
+Veja em: [docs/architecture.md](docs/architecture.md)
+  
