@@ -16,13 +16,28 @@ Projeto de **Modernização, Otimização e Segurança** do ambiente AWS da **Me
 ---
 
 ## 🎯 Objetivos do projeto
-
 - Modernizar a arquitetura AWS com **ambientes segregados** (DEV/HOM/PROD)
 - Otimizar infraestrutura com **Auto Scaling e right-sizing**
 - Descarregar conteúdo estático com **S3 + CloudFront**
 - Automatizar deploys com **CI/CD** e promoção controlada entre ambientes
 - Reforçar segurança com **IAM mínimo necessário**, **Secrets Manager** e **remoção de bastion**
 - Centralizar observabilidade e auditoria com **CloudWatch + CloudTrail + logs centralizados**
+
+---
+
+## 📌 Escopo
+### Inclui
+- Criação/Padronização dos ambientes **DEV / HOM / PROD**
+- Arquitetura otimizada: **ALB + ASG**, **RDS Multi-AZ**, **CloudFront + S3**
+- Pipeline **CodePipeline + CodeBuild** (promoção entre ambientes)
+- Implementação de **SSM Session Manager** para administração (sem bastion)
+- Segurança e governança (IAM least privilege, segredos centralizados, auditoria)
+- Observabilidade (métricas, logs e trilhas) e evidências de validação
+
+### Fora de escopo (ajuste se necessário)
+- Refatorações profundas na aplicação (além do necessário para build/deploy/observabilidade)
+- Funcionalidades de produto/código de negócio não relacionadas ao objetivo do projeto
+- Integrações corporativas avançadas (SIEM, ITSM, etc.), caso não previstas
 
 ---
 
@@ -49,4 +64,3 @@ flowchart TB
   end
 
   ADM["Admin/DevOps"] --> SSM["SSM Session Manager"] --> ASG_P
-
