@@ -1,2 +1,16 @@
+## 3.2 CI/CD
+```bash
+cat > docs/diagram-cicd.md <<'EOF'
 # Diagrama — CI/CD (DEV -> HOM -> PROD)
 
+```mermaid
+flowchart LR
+  COMMIT[Git push / PR] --> CP[CodePipeline]
+  CP --> CB[CodeBuild: build + tests]
+  CB --> DEVDEP[Deploy DEV]
+  DEVDEP --> G1{Approval Gate}
+  G1 --> HOMDEP[Deploy HOM]
+  HOMDEP --> T[Test + migrations]
+  T --> G2{Approval Gate}
+  G2 --> PRODDEP[Deploy PROD]
+  PRODDEP --> MON[Smoke test + monitoring]

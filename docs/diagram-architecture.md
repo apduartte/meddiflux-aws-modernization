@@ -1,3 +1,4 @@
+
 # Diagrama — Arquitetura (visão macro)
 
 ```mermaid
