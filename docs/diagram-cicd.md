@@ -1,7 +1,7 @@
-```md
 # Diagrama — CI/CD (DEV → HOM → PROD)
 
-> **Objetivo:** entregar com velocidade sem perder governança, usando aprovações entre ambientes e validação pós-deploy para aumentar confiabilidade em produção.
+## Objetivo
+Entregar com velocidade sem perder governança, usando aprovações entre ambientes e validação pós-deploy para aumentar a confiabilidade em produção.
 
 ```mermaid
 flowchart LR
