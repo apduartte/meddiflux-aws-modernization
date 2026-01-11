@@ -1,4 +1,7 @@
+```md
 # Diagrama — CI/CD (DEV → HOM → PROD)
+
+> **Objetivo:** entregar com velocidade sem perder governança, usando aprovações entre ambientes e validação pós-deploy para aumentar confiabilidade em produção.
 
 ```mermaid
 flowchart LR
@@ -11,8 +14,3 @@ flowchart LR
   T --> G2{Approval Gate}
   G2 --> PRODDEP[Deploy PROD]
   PRODDEP --> MON[Smoke test + monitoramento]
-```md
-> **Objetivo:** entregar com velocidade sem perder governança, usando aprovações entre ambientes e validação pós-deploy para aumentar confiabilidade em produção.
-
-```mermaid
-flowchart LR
