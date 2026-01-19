@@ -1,43 +1,67 @@
-# MeddiFlux AWS Modernization
+# 🚀 Modernização da Arquitetura AWS – MeddiFlux Systems
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-CodePipeline%20%2B%20CodeBuild-blue?logo=amazonaws&logoColor=white)
-![Security](https://img.shields.io/badge/Security-IAM%20%2B%20Secrets%20Manager-black?logo=amazonaws&logoColor=white)
-![Observability](https://img.shields.io/badge/Observability-CloudWatch%20%2B%20CloudTrail-orange?logo=amazoncloudwatch&logoColor=white)
+## 🎯 Objetivo
 
-Projeto de **Modernização, Otimização e Segurança** do ambiente AWS da **MeddiFlux Systems**, com foco em:
-- **Redução de custos (FinOps)**
-- **Escalabilidade e performance**
-- **Governança e segregação de ambientes (DEV/HOM/PROD)**
-- **Segurança (least privilege, sem bastion, segredos centralizados)**
-- **Observabilidade e auditoria (logs e trilhas centralizadas)**
+Esta proposta visa modernizar a infraestrutura AWS da MeddiFlux Systems com foco em:
+
+- Redução de custos operacionais
+- Otimização de desempenho, escalabilidade e governança
+- Reforço da segurança e mitigação de riscos críticos
 
 ---
 
-## 🎯 Objetivos do projeto
-- Modernizar a arquitetura AWS com **ambientes segregados** (DEV/HOM/PROD)
-- Otimizar infraestrutura com **Auto Scaling e right-sizing**
-- Descarregar conteúdo estático com **S3 + CloudFront**
-- Automatizar deploys com **CI/CD** e promoção controlada entre ambientes
-- Reforçar segurança com **IAM mínimo necessário**, **Secrets Manager** e **remoção de bastion**
-- Centralizar observabilidade e auditoria com **CloudWatch + CloudTrail + logs centralizados**
+## 🧩 Visão Geral da Solução
+
+### 1. Organização em Ambientes Isolados
+
+- **DEV**: Ambiente seguro para desenvolvimento
+- **HOM**: Uso otimizado em horário comercial (220h/mês)
+- **PROD**: Auto Scaling, RDS otimizado, CDN e segurança reforçada
+
+### 2. Otimização de Infraestrutura e Custos
+
+- Substituição de 6 instâncias `m4.large` por Auto Scaling com 2–4 instâncias `t3.medium`
+- Redimensionamento do RDS para `t3.large` Multi-AZ
+- Uso de **CloudFront + S3** para conteúdo estático
+- VPCs isoladas por ambiente para governança
+
+### 3. CI/CD e Automação
+
+- **CodePipeline + CodeBuild** para DEV, HOM e PROD
+- Deploy automatizado via `git push`
+- Execução automática de testes e migrações
+- Fluxo padronizado com aprovações e revisões
 
 ---
 
-## 📌 Escopo
-### Inclui
-- Criação/Padronização dos ambientes **DEV / HOM / PROD**
-- Arquitetura otimizada: **ALB + ASG**, **RDS Multi-AZ**, **CloudFront + S3**
-- Pipeline **CodePipeline + CodeBuild** (promoção entre ambientes)
-- Implementação de **SSM Session Manager** para administração (sem bastion)
-- Segurança e governança (IAM least privilege, segredos centralizados, auditoria)
-- Observabilidade (métricas, logs e trilhas) e evidências de validação
+## 💰 Pilar Financeiro – Redução de Custos
 
-### Fora de escopo (ajuste se necessário)
-- Refatorações profundas na aplicação (além do necessário para build/deploy/observabilidade)
-- Funcionalidades de produto/código de negócio não relacionadas ao objetivo do projeto
-- Integrações corporativas avançadas (SIEM, ITSM, etc.), caso não previstas
+| Item                   | Atual | Projetado |
+|------------------------|-------|-----------|
+| DEV                   | $0    | $36       |
+| HOM                   | $48   | $36       |
+| PROD                  | $477  | $207      |
+| Bastion Host          | $5    | $0        |
+| Serviço CI/CD         | $0    | $13       |
+| **Total Mensal**      | $530  | $291      |
+| **Economia Mensal**   | -     | $239 (45%)|
+| **Projeção Anual**    | $6.360| $3.498    |
+
+### 💡 Oportunidades Adicionais
+
+- **Savings Plans PROD**: até 40% (~$82/mês)
+- **RDS Reserved Instances**: até 30% (~$60/mês)
+- **Remoção de NAT Gateway DEV/HOM**: ~$20/mês
+- **Economia Total Potencial**: $401/mês (-76%)
+
+---
+
+## ⚙ Pilar Operacional – Eficiência e Escalabilidade
+
+- Auto Scaling conforme demanda
+- CloudFront para cache e distribuição
+- S3 para conteúdo estático
+- Monitoramento com **CloudWatch** e **CloudTrail**
 
 ---
 ## Diagramas (Arquitetura e CI/CD)
@@ -149,5 +173,59 @@ cicd/
  └─ github-actions/
     └─ workflows/  # Pipelines CI/CD
 
+## 🔐 Pilar de Risco – Segurança e Governança
 
+- Eliminação do Bastion Host
+- Migrações via pipeline com scripts versionados
+- IAM com permissões mínimas e **Secrets Manager**
+- VPCs independentes e tráfego criptografado fim a fim
+- Auditoria com CloudTrail e logs centralizados
 
+---
+
+## 📅 Cronograma de Implementação (8 semanas)
+
+| Fase | Atividades |
+|------|------------|
+| **1. Fundos (Semanas 1–2)** | VPCs, sub-redes, segurança, ambiente DEV |
+| **2. Homologação (Semanas 3–4)** | Recriação do HOM, testes DEV → HOM |
+| **3. Produção (Semanas 5–6)** | Novo PROD com Auto Scaling, RDS, CDN |
+| **4. Testes (Semana 7)** | Testes de carga, failover, segurança |
+| **5. Go-live (Semana 8)** | Corte de DNS, monitoramento, desligamento antigo |
+
+---
+
+## 💵 Custo do Serviço de Consultoria
+
+- **Valor único**: R$ 35.000,00
+- **Suporte mensal (a partir de jan/2026)**: R$ 1.624,00
+
+---
+
+## 📊 Análise de Custo-Benefício
+
+- **Economia estimada**: R$ 15.588,00 ao ano
+- **Retorno sobre investimento**: em menos de 3 meses
+
+---
+
+## 📌 Próximos Passos
+
+- ✅ Aprovação executiva
+- ✅ Validação do cronograma
+- ✅ Alinhamento com equipe de desenvolvimento
+- 🚀 Início da Fase 1 – Ambiente DEV
+
+---
+
+## ✅ Conclusão
+
+A proposta entrega uma combinação clara de:
+
+- 💸 Redução de custos
+- ⚙️ Otimização operacional
+- 🔐 Fortalecimento da segurança
+
+A MeddiFlux Systems estará preparada para crescer com previsibilidade, governança e alta disponibilidade na AWS.
+
+---
