@@ -1,96 +1,108 @@
+````md
 # 🚀 MeddiFlux Systems — Modernização da Arquitetura AWS
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white)*
-![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white)*
-![ECS](https://img.shields.io/badge/ECS-Containers-blue?logo=amazonecs&logoColor=white) *
-![ECR](https://img.shields.io/badge/ECR-Registry-blue?logo=amazonaws&logoColor=white)*
-![IAM](https://img.shields.io/badge/IAM-Security-black?logo=amazonaws&logoColor=white) *
-![CloudWatch](https://img.shields.io/badge/CloudWatch-Logs%2FMetrics-orange?logo=amazoncloudwatch&logoColor=white)*
+![AWS](https://img.shields.io/badge/AWS-Cloud-%23FF9900.svg?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-%237B42BC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containers-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
+![ECS](https://img.shields.io/badge/Amazon%20ECS-Fargate-%23FF9900.svg?style=for-the-badge&logo=amazonecs&logoColor=white)
+![ECR](https://img.shields.io/badge/Amazon%20ECR-Registry-%23232F3E.svg?style=for-the-badge&logo=amazonaws&logoColor=white)
+![S3](https://img.shields.io/badge/Amazon%20S3-Storage-%23569A31.svg?style=for-the-badge&logo=amazons3&logoColor=white)
+![IAM](https://img.shields.io/badge/AWS%20IAM-Security-%23DD344C.svg?style=for-the-badge&logo=amazoniam&logoColor=white)
+![CloudWatch](https://img.shields.io/badge/CloudWatch-Logs%2FMetrics-%23FF4F8B.svg?style=for-the-badge&logo=amazoncloudwatch&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+---
 
 ## 📌 Visão Geral
 
-Este projeto tem como objetivo **modernizar a infraestrutura AWS da MeddiFlux Systems**, aplicando **boas práticas de Cloud, DevOps, Segurança e FinOps**, com foco em:
+Este repositório documenta a **modernização da arquitetura AWS da MeddiFlux Systems**, aplicando **Cloud/DevOps, Segurança (Security by Design) e FinOps**, com foco em:
 
-- 💸 Redução de custos operacionais  
-- ⚙️ Escalabilidade, automação e eficiência  
-- 🔐 Segurança, governança e mitigação de riscos  
-- 🎓 Aprendizado prático com arquitetura real de mercado  
+- 💸 Redução de custos operacionais
+- ⚙️ Escalabilidade, automação e eficiência
+- 🔐 Segurança, governança e mitigação de riscos
+- 🎓 Aprendizado prático com arquitetura baseada em cenário real
 
-A iniciativa foi estruturada para **uso acadêmico e profissional**, com documentação clara, evidências técnicas e racional arquitetural sólido.
-# Document Heading 
+A iniciativa é voltada para **uso acadêmico e profissional**, com documentação objetiva, evidências técnicas e racional arquitetural claro.
+
 ---
 
 ## 🎯 Objetivos do Projeto
 
-** Modernizar a arquitetura legada para **containers em ECS Fargate**
-** Implementar **Infraestrutura como Código (Terraform)**
-** Automatizar **CI/CD por ambiente (DEV, HOM, PROD)**
-** Garantir **segurança por padrão (Security by Design)**
-* *Aplicar **FinOps** para redução e controle de custos
-* *Criar um **roadmap evolutivo e explicável**
+- Modernizar a arquitetura legada para **containers em ECS Fargate**
+- Implementar **Infraestrutura como Código (Terraform)**
+- Automatizar **CI/CD por ambiente (DEV, HOM, PROD)**
+- Garantir **segurança por padrão** (Least Privilege, Secrets, auditoria)
+- Aplicar **FinOps** para controle e otimização de custos
+- Manter um **roadmap evolutivo, rastreável e explicável**
 
 ---
 
 ## 🧩 Visão Geral da Arquitetura
 
-### Ambientes Isolados
+### Ambientes isolados
 
-* **DEV:** desenvolvimento contínuo e testes
-* **HOM:** validação funcional (uso controlado – 220h/mês)
-* **PROD:** alta disponibilidade, escalabilidade e segurança reforçada
+- **DEV:** desenvolvimento contínuo e testes
+- **HOM:** validação funcional (uso controlado – 220h/mês)
+- **PROD:** alta disponibilidade, escalabilidade e segurança reforçada
 
-### Componentes Principais
+### Componentes principais
 
-* **ECS Fargate:** execução de containers sem gerenciamento de servidores
-* **ECR:** versionamento e armazenamento de imagens Docker
-* **ALB:** balanceamento de carga
-* **RDS Multi-AZ:** persistência de dados com alta disponibilidade
-* **CloudFront + S3:** cache e distribuição de conteúdo
-* **CloudWatch + CloudTrail:** observabilidade e auditoria
+- **VPC + Subnets + Security Groups:** isolamento de rede por ambiente
+- **ECS Fargate:** execução de containers sem gestão de servidores
+- **ECR:** versionamento e armazenamento de imagens Docker
+- **ALB:** balanceamento de carga para as aplicações
+- **RDS Multi-AZ:** persistência de dados com alta disponibilidade
+- **S3 (Infra & Conteúdo):**
+  - armazenamento de artefatos (ex.: frontend estático, evidências, exports)
+  - suporte a estados/artefatos de infraestrutura quando aplicável
+- **CloudFront + S3 (conteúdo estático):** cache e distribuição global (quando usado)
+- **CloudWatch + CloudTrail:** observabilidade, auditoria e rastreabilidade
 
 ---
 
 ## 🏗️ Stack Tecnológica
 
-| Categoria         | Tecnologia                    |
-| ----------------- | ----------------------------- |
-| Cloud             | AWS                           |
-| Containers        | Docker                        |
-| Orquestração      | ECS Fargate                   |
-| Registry          | Amazon ECR                    |
-| Infra como Código | Terraform                     |
-| CI/CD             | GitHub Actions                |
-| Observabilidade   | CloudWatch                    |
-| Segurança         | IAM, Secrets Manager          |
-| CDN               | CloudFront                    |
-| Banco de Dados    | RDS (PostgreSQL / SQL Server) |
+| Categoria              | Tecnologia                                |
+|------------------------|-------------------------------------------|
+| Cloud                  | AWS                                       |
+| Containers             | Docker                                    |
+| Orquestração           | ECS Fargate                               |
+| Registry               | Amazon ECR                                |
+| Storage (Infra/Assets) | Amazon S3                                 |
+| Infra como Código      | Terraform                                 |
+| CI/CD                  | GitHub Actions                            |
+| Observabilidade        | CloudWatch                                |
+| Auditoria              | CloudTrail                                |
+| Segurança              | IAM, Secrets Manager                      |
+| CDN                    | CloudFront (quando aplicável)             |
+| Banco de Dados         | RDS (PostgreSQL / SQL Server)             |
 
 ---
 
 ## 📁 Estrutura do Repositório
 
-```
+```txt
 meddiflux-aws-modernization/
 │
 ├── app/
-│   ├── backend/        # Backend + Dockerfile
-│   └── frontend/       # Frontend + Dockerfile
+│   ├── backend/              # Backend + Dockerfile
+│   └── frontend/             # Frontend + Dockerfile (ou build estático)
 │
 ├── infra/
 │   └── terraform/
-│       ├── modules/    # Módulos reutilizáveis
-│       └── envs/       # DEV / HOM / PROD
+│       ├── modules/          # Módulos reutilizáveis (network, iam, ecs, ecr, s3, observability, etc.)
+│       └── envs/             # DEV / HOM / PROD (main.tf, variables.tf, outputs.tf, tfvars)
 │
 ├── cicd/
 │   └── github-actions/
-│       └── workflows/ # Pipelines CI/CD
+│       └── workflows/        # Pipelines CI/CD por ambiente
 │
 ├── docs/
-│   └── evidences/      # Prints, logs, outputs
+│   └── evidences/            # Prints, logs, outputs, evidências de execução
 │
 ├── README.md
 └── LICENSE
-```
+````
 
 ---
 
@@ -102,44 +114,42 @@ meddiflux-aws-modernization/
 | `homolog` | Validação funcional          |
 | `master`  | Produção com governança      |
 
-🔁 **Promoção controlada:**
-`dev → homolog → master`
+🔁 **Promoção controlada:** `dev → homolog → master`
 
 ---
 
 ## 🔁 Workflow Operacional (Resumo)
 
-1. Desenvolvedor realiza `git push`
-2. Pipeline CI/CD é acionada
+1. Desenvolvedor realiza `git push` na branch do ambiente
+2. Pipeline CI/CD é acionada (GitHub Actions)
 3. Build da imagem Docker
-4. Push da imagem no ECR
-5. Deploy automático no ECS Fargate
-6. Logs e métricas no CloudWatch
+4. Push da imagem para o **ECR**
+5. Deploy automatizado no **ECS Fargate**
+6. Logs e métricas no **CloudWatch**
 
 ---
 
 ## 🔐 Segurança e Governança
 
 * IAM com **Least Privilege**
-* Secrets no **AWS Secrets Manager**
-* ❌ Eliminação de Bastion Host
-* Deploy e migrações **somente via pipeline**
-* Auditoria completa com **CloudTrail**
-* Ambientes isolados por VPC
+* Segredos no **AWS Secrets Manager**
+* ❌ Eliminação de Bastion Host (acesso controlado e rastreável)
+* Deploy/migrações **somente via pipeline**
+* Auditoria e trilha de eventos com **CloudTrail**
+* Ambientes isolados por **VPC**
 
 ---
 
 ## 💰 FinOps e Otimização de Custos
 
-### Principais Estratégias
+### Estratégias aplicadas
 
-* Right sizing de instâncias
-* Auto Scaling sob demanda
-* Ambientes DEV e HOM com custo controlado
-* Avaliação de Savings Plans e Reserved Instances
+* Right sizing de recursos
+* Auto Scaling sob demanda (quando aplicável)
+* DEV e HOM com uso controlado e rastreável
+* Avaliação de Savings Plans / Reserved Instances (para PROD)
 
-📉 **Resultado esperado:**
-Redução significativa de custos com aumento de eficiência operacional.
+📉 **Resultado esperado:** redução significativa de custos com ganho de eficiência operacional.
 
 ---
 
@@ -150,6 +160,7 @@ Redução significativa de custos com aumento de eficiência operacional.
 * VPC DEV
 * IAM
 * ECR
+* S3 base (infra/artefatos, quando aplicável)
 * ECS Fargate DEV
 * Terraform versionado
 
@@ -164,7 +175,7 @@ Redução significativa de custos com aumento de eficiência operacional.
 * ECS PROD
 * Auto Scaling
 * RDS Multi-AZ
-* ALB + CloudFront
+* ALB + (CloudFront quando aplicável)
 
 ### 🟨 Fase 4 — Testes (Semana 7)
 
@@ -182,18 +193,18 @@ Redução significativa de custos com aumento de eficiência operacional.
 
 ## 📊 Evidências Técnicas
 
-As evidências estão disponíveis em:
+As evidências ficam em:
 
-```
+```txt
 docs/evidences/
 ```
 
 Incluem:
 
-* Prints da VPC
-* ECR com imagens
+* Prints da VPC e recursos criados
+* ECR com imagens versionadas
 * ECS em execução
-* Logs do CloudWatch
+* Logs/Métricas no CloudWatch
 * Pipelines CI/CD
 * Outputs do Terraform
 
@@ -201,7 +212,7 @@ Incluem:
 
 ## 🎓 Contexto Acadêmico
 
-Este projeto foi desenvolvido como:
+Projeto desenvolvido como:
 
 * Laboratório prático de **Arquitetura em Nuvem**
 * Exercício de **DevOps e Automação**
@@ -212,13 +223,11 @@ Este projeto foi desenvolvido como:
 
 ## ✅ Conclusão
 
-A modernização da arquitetura AWS da MeddiFlux Systems entrega:
+A modernização proposta entrega:
 
 * 💸 Redução de custos
 * ⚙️ Eficiência operacional
 * 🔐 Segurança e governança
 * 🎓 Aprendizado estruturado
-* 🏗️ Arquitetura real de mercado
-
----
+* 🏗️ Arquitetura alinhada a práticas de mercado
 
