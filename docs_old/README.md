@@ -1,3 +1,7 @@
+# 📚 Documentação
+
+## 🏗️ Arquitetura AWS
+- [Diagrama ECS + EC2](./architecture/aws-ecs-diagram.html) - Visualização de uma das arquiteturas propostas para iniciar no treinamento e evoluir na Formação AWS.
 # MeddiFlux — Documentação Técnica (AWS Elastic Beanstalk)
 
 > **Objetivo**: padronizar a entrega do MeddiFlux na AWS com **Infra as Code (Terraform)**, **CI/CD**, **segurança por padrão** e **observabilidade**.
